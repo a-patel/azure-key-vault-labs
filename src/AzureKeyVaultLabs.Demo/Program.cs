@@ -1,5 +1,7 @@
 #region Imports
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Azure.KeyVault;
+using Microsoft.Azure.Services.AppAuthentication;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.AzureKeyVault;
 using Microsoft.Extensions.Hosting;
@@ -30,6 +32,16 @@ namespace AzureKeyVaultLabs.Demo
                     {
                         config.AddAzureKeyVault(keyVaultEndpoint, keyVaultClientId, keyVaultClientSecret, new DefaultKeyVaultSecretManager());
                     }
+
+
+                    //// Way-2
+                    //// Connect to Azure Key Vault using the Managed Identity.
+                    //if (!string.IsNullOrEmpty(keyVaultEndpoint))
+                    //{
+                    //    var azureServiceTokenProvider = new AzureServiceTokenProvider();
+                    //    var keyVaultClient = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(azureServiceTokenProvider.KeyVaultTokenCallback));
+                    //    config.AddAzureKeyVault(keyVaultEndpoint, keyVaultClient, new DefaultKeyVaultSecretManager());
+                    //}
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
