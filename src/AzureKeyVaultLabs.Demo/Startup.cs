@@ -1,7 +1,8 @@
 #region Imports
+using AzureKeyVaultLabs.Demo.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 #endregion
@@ -10,8 +11,19 @@ namespace AzureKeyVaultLabs.Demo
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
+            //// add a Settings model to the service container, which takes its values from the applications configuration.
+            //services.Configure<Settings>(Configuration.GetSection("Settings"));
+
+            services.AddControllers();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -25,10 +37,7 @@ namespace AzureKeyVaultLabs.Demo
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllers();
             });
         }
     }
