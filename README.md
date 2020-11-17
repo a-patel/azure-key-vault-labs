@@ -5,10 +5,11 @@
 
 
 
-Please refer to below articles written by me on Azure App Configuration:
 
-- [Use Azure App Configuration with ASP.NET Core Application](https://medium.com/aspnetcore/use-azure-app-configuration-with-asp-net-core-application-6bdf0cc851e2)
-- [Azure — Introduction to Azure App Configuration](https://medium.com/awesome-azure/azure-introduction-to-azure-app-configuration-f4a4c43ec5db)
+Please refer to below article(s) of my publication [Awesome Azure](https://medium.com/awesome-azure) on Azure App Configuration:
+
+- [Keeping Secrets Safe in ASP.NET Core with Azure Key Vault](https://medium.com/awesome-azure/keeping-secrets-safe-in-asp-net-core-with-azure-key-vault-228a1409bb3a)
+
 
 
 
