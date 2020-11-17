@@ -26,12 +26,12 @@ namespace AzureKeyVaultLabs.Demo
                     var keyVaultClientId = settings["AzureKeyVault:ClientId"];
                     var keyVaultClientSecret = settings["AzureKeyVault:ClientSecret"];
 
-                    // Way-1
-                    // Connect to Azure Key Vault using the Client Id and Client Secret (AAD).
-                    if (!string.IsNullOrEmpty(keyVaultEndpoint) && !string.IsNullOrEmpty(keyVaultClientId) && !string.IsNullOrEmpty(keyVaultClientSecret))
-                    {
-                        config.AddAzureKeyVault(keyVaultEndpoint, keyVaultClientId, keyVaultClientSecret, new DefaultKeyVaultSecretManager());
-                    }
+                    //// Way-1
+                    //// Connect to Azure Key Vault using the Client Id and Client Secret (AAD).
+                    //if (!string.IsNullOrEmpty(keyVaultEndpoint) && !string.IsNullOrEmpty(keyVaultClientId) && !string.IsNullOrEmpty(keyVaultClientSecret))
+                    //{
+                    //    config.AddAzureKeyVault(keyVaultEndpoint, keyVaultClientId, keyVaultClientSecret, new DefaultKeyVaultSecretManager());
+                    //}
 
 
                     //// Way-2

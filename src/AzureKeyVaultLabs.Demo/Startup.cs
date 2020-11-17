@@ -1,5 +1,5 @@
 #region Imports
-using AzureKeyVaultLabs.Demo.Models;
+using AzureKeyVaultLabs.Demo.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -24,6 +24,8 @@ namespace AzureKeyVaultLabs.Demo
             //services.Configure<Settings>(Configuration.GetSection("Settings"));
 
             services.AddControllers();
+
+            services.AddCustomSwagger();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -34,6 +36,8 @@ namespace AzureKeyVaultLabs.Demo
             }
 
             app.UseRouting();
+
+            app.UseCustomSwagger();
 
             app.UseEndpoints(endpoints =>
             {
