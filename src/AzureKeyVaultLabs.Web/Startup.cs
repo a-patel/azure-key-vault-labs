@@ -1,5 +1,7 @@
 #region Imports
 using AzureKeyVaultLabs.Demo.Extensions;
+using AzureKeyVaultLabs.Demo.Models;
+using AzureKeyVaultLabs.Web.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -21,7 +23,9 @@ namespace AzureKeyVaultLabs.Web
         public void ConfigureServices(IServiceCollection services)
         {
             //// add a Settings model to the service container, which takes its values from the applications configuration.
-            //services.Configure<Settings>(Configuration.GetSection("Settings"));
+            services.Configure<Settings>(Configuration.GetSection("Settings"));
+
+            services.AddScoped<IAzureKeyVaultService, AzureKeyVaultService>();
 
             services.AddControllers();
 
