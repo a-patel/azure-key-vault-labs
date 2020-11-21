@@ -23,25 +23,30 @@ namespace AzureKeyVaultLabs.Web
                     var settings = config.Build();
 
                     var keyVaultEndpoint = settings["AzureKeyVault:Endpoint"];
-                    var keyVaultClientId = settings["AzureKeyVault:ClientId"];
-                    var keyVaultClientSecret = settings["AzureKeyVault:ClientSecret"];
 
-                    //// Way-1
-                    //// Connect to Azure Key Vault using the Client Id and Client Secret (AAD).
-                    //if (!string.IsNullOrEmpty(keyVaultEndpoint) && !string.IsNullOrEmpty(keyVaultClientId) && !string.IsNullOrEmpty(keyVaultClientSecret))
-                    //{
-                    //    config.AddAzureKeyVault(keyVaultEndpoint, keyVaultClientId, keyVaultClientSecret, new DefaultKeyVaultSecretManager());
-                    //}
+                    if (context.HostingEnvironment.IsDevelopment())
+                    {
+                        // Way-1
+                        // Connect to Azure Key Vault using the Client Id and Client Secret (AAD).
+                        var keyVaultClientId = settings["AzureKeyVault:ClientId"];
+                        var keyVaultClientSecret = settings["AzureKeyVault:ClientSecret"];
 
-
-                    //// Way-2
-                    //// Connect to Azure Key Vault using the Managed Identity.
-                    //if (!string.IsNullOrEmpty(keyVaultEndpoint))
-                    //{
-                    //    var azureServiceTokenProvider = new AzureServiceTokenProvider();
-                    //    var keyVaultClient = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(azureServiceTokenProvider.KeyVaultTokenCallback));
-                    //    config.AddAzureKeyVault(keyVaultEndpoint, keyVaultClient, new DefaultKeyVaultSecretManager());
-                    //}
+                        if (!string.IsNullOrEmpty(keyVaultEndpoint) && !string.IsNullOrEmpty(keyVaultClientId) && !string.IsNullOrEmpty(keyVaultClientSecret))
+                        {
+                            config.AddAzureKeyVault(keyVaultEndpoint, keyVaultClientId, keyVaultClientSecret, new DefaultKeyVaultSecretManager());
+                        }
+                    }
+                    else
+                    {
+                        // Way-2
+                        // Connect to Azure Key Vault using the Managed Identity.
+                        if (!string.IsNullOrEmpty(keyVaultEndpoint))
+                        {
+                            var azureServiceTokenProvider = new AzureServiceTokenProvider();
+                            var keyVaultClient = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(azureServiceTokenProvider.KeyVaultTokenCallback));
+                            config.AddAzureKeyVault(keyVaultEndpoint, keyVaultClient, new DefaultKeyVaultSecretManager());
+                        }
+                    }
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
