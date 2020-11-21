@@ -1,0 +1,23 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "AzureKeyVaultEndpoint": "https://<YourKeyVaultName>.vault.azure.net",
+    //"AzureKeyVault": {
+    //  "Endpoint": "https://<YourKeyVaultName>.vault.azure.net",
+    //  "ClientId": "<YourKeyVaultClientId>",
+    //  "ClientSecret": "<YourKeyVaultClientSecret>"
+    //}
+  },
+
+  "Settings": {
+    "AppName": "Azure Key Vault with Azure Functions Labs",
+    "Version": 1.0,
+    "FontSize": 50,
+    "RefreshRate": 1000,
+    "Language": "English",
+    "Messages": "Hello There. Thanks for using Azure Key Vault with Azure Functions.",
+    "BackgroundColor": "Black"
+  }
+}
